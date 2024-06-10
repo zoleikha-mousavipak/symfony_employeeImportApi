@@ -22,7 +22,8 @@ It is composed by 3 containers:
 
 
 # To see the app functionality run this command in terminal:
-6. curl -X POST -F "file=@import02.csv" http://localhost/api/employee
+6. Replace ",Phone No. ," with ",Phone No," in csv file
+7. curl -X POST -F "file=@import02.csv" http://localhost/api/employee
 
 
 ## Note
