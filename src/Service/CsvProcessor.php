@@ -64,18 +64,4 @@ class CsvProcessor
         $this->em->flush();
     }
 
-    public function getEmployees(): array
-    {
-        $employees = $this->em->getRepository(Employee::class)->findAll();
-        $serializedEmployees = [];
-
-        foreach ($employees as $employee) {
-            $serializedEmployees[] = [
-                'id' => $employee->getEmpID(),
-                'NamePrefix' => $employee->getNamePrefix(),
-            ];
-        }
-        
-        return $serializedEmployees;
-    }
 }
