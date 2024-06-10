@@ -27,9 +27,11 @@ It is composed by 3 containers:
 
 
 ## Note
-# The main csv file hat some conflict Emp Id so to run with the big csv file you should do:
+# The main csv file hat so many conflict Emp Id so to run with the big csv file you should do:
  - Replace ",Phone No. ," with ",Phone No," in csv file
  - Replace all duplicate Employee Numbers with an appended '0', for example, transform '945178' into '9451780'.
+  
+# I have already applied these changes to some data, but updating the entire file was very time-consuming. Therefore, I split a portion of the data into a separate file named import02.csv. Once the main CSV file is updated, both files can be processed using the code provided.
 
 ## See Entrypoints in Postman:
 
