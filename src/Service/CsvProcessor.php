@@ -11,11 +11,8 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class CsvProcessor
 {
-    private $em;
-
-    public function __construct(EntityManagerInterface $em)
-    {
-        $this->em = $em;
+    public function __construct(
+        private EntityManagerInterface $em){
     }
 
     public function process(string $csvFilePath)
@@ -35,26 +32,22 @@ class CsvProcessor
             $employee->setLastName($record['Last Name']);
             $employee->setGender($record['Gender']);
             $employee->setEmail($record['E Mail']);
-            // $employee->setDateOfBirth(new \DateTime($record['Date of Birth']));
-            // $employee->setTimeOfBirth(new \DateTime($record['Time of Birth']));
 
-              // Parse Date of Birth
-              $dateOfBirth = DateTime::createFromFormat('m/d/Y', $record['Date of Birth']);
-              if ($dateOfBirth === false) {
-                  // Log error or handle gracefully
-                  continue; // Skip this record
-              }
-              $employee->setDateOfBirth($dateOfBirth);
+            // Parse Date of Birth
+            $dateOfBirth = DateTime::createFromFormat('m/d/Y', $record['Date of Birth']);
+            if ($dateOfBirth === false) {
+                continue;
+            }
+            $employee->setDateOfBirth($dateOfBirth);
+
+            // Parse Time of Birth
+            $timeOfBirth = DateTime::createFromFormat('h:i:s A', $record['Time of Birth']);
+            if ($timeOfBirth === false) {
+                continue;
+            }
+            $employee->setTimeOfBirth($timeOfBirth);
   
-              // Parse Time of Birth
-              $timeOfBirth = DateTime::createFromFormat('h:i:s A', $record['Time of Birth']);
-              if ($timeOfBirth === false) {
-                  // Log error or handle gracefully
-                  continue; // Skip this record
-              }
-              $employee->setTimeOfBirth($timeOfBirth);
-  
-              // Set other fields
+            // Set other fields
             $employee->setAgeInYears((int)$record['Age in Yrs.']);
             $employee->setDateOfJoining(new \DateTime($record['Date of Joining']));
             $employee->setAgeInCompany((int)$record['Age in Company (Years)']);

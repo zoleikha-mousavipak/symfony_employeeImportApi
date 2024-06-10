@@ -89,9 +89,7 @@ class EmployeeService
         {
             throw new Exception("Employee not found", 1);
         }
-
         $this->em->remove($employee);
         $this->em->flush();
-
     }
 }
