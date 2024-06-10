@@ -21,4 +21,37 @@ It is composed by 3 containers:
 5. Inside the `php` container, run `composer install` to install dependencies from `/var/www/symfony` folder.
 
 
+# To see the app functionality run this command in terminal:
+6. curl -X POST -F "file=@import02.csv" http://localhost/api/employee
 
+
+## Note
+# The main csv file hat some conflict Emp Id so to run with the big csv file you should do:
+ - Replace ",Phone No. ," with ",Phone No," in csv file
+ - Replace all duplicate Employee Numbers with an appended '0', for example, transform '945178' into '9451780'.
+
+## See Entrypoints in Postman:
+
+    # Endpoint: GET /api/employee
+    Description: Retrieves a list of all employees
+
+    - Set method to GET
+    - URL: http://localhost/api/employee
+    - Headers: Content-type: application/json
+    - Click Send.
+
+    # Endpoint: GET /api/employee/{id}
+    Description: Retrieves an employee base on id
+
+    - Set method to GET
+    - URL: http://localhost/api/employee/{id}
+    - Headers: Content-type: application/json
+    - Click Send.
+ 
+    # Endpoint: DELETE /api/employee/{id}
+    Description: DELETE an employee base on id
+
+    - Set method to DELETE
+    - URL: http://localhost/api/employee/{id}
+    - Headers: Content-type: application/json
+    - Click Send.
