@@ -22,16 +22,8 @@ It is composed by 3 containers:
 
 
 # To see the app functionality run this command in terminal:
-6. Replace ",Phone No. ," with ",Phone No," in csv file
-7. curl -X POST -F "file=@import02.csv" http://localhost/api/employee
+6. curl -X POST -F "file=@import02.csv" http://localhost/api/employee
 
-
-## Note
-# The main csv file hat so many conflict Emp Id so to run with the big csv file you should do:
- - Replace ",Phone No. ," with ",Phone No," in csv file
- - Replace all duplicate Employee Numbers with an appended '0', for example, transform '945178' into '9451780'.
-  
-# I have already applied these changes to some data, but updating the entire file was very time-consuming. Therefore, I split a portion of the data into a separate file named import02.csv. Once the main CSV file is updated, both files can be processed using the code provided.
 
 ## See Entrypoints in Postman:
 
@@ -58,3 +50,20 @@ It is composed by 3 containers:
     - URL: http://localhost/api/employee/{id}
     - Headers: Content-type: application/json
     - Click Send.
+
+- Verbesserungs:
+    -Validierung & Robustheit
+        -Dein Ansatz die Datei händisch zu korrigieren ist zwar sehr engagiert, aber spricht nicht für robusten code. Wir haben auf -eine Validierung bzw eine Fehlerbehandlung abgezielt- das fehlt leider komplett.
+        -Header / data count comparison, dateTime creation, employeeId conflicts
+    -Bulk processing
+        -Ein flush von allen Entities auf einmal auch gewagt, eine BATCH_SIZE wäre schön gewesen
+    -Ausgabe
+        -Alle Employees bruteforce zu dehydrieren und auszugeben führt früher oder später zu out of memory exceptions
+        -Eine Pagination wäre hier schön gewesen
+        -Ein Serializer statt ein statisches Mapping wäre schön gewesen
+    -Return types / typehinting / strict types waren unvollständig
+        -Best practice bei größeren php projekten
+    -Re-import und update von employees
+        -Deine Umsetzung ist nur auf einen Einmal-Import ausgelegt
+    -Performance
+        -Bei der Dateigröße und gegebenfalls re-import funktionalität wäre ein async handling sinnvoll. Z.b. Als message
