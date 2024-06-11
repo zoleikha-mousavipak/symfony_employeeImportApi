@@ -51,19 +51,19 @@ It is composed by 3 containers:
     - Headers: Content-type: application/json
     - Click Send.
 
-- Verbesserungs:
-    -Validierung & Robustheit
-        -Dein Ansatz die Datei händisch zu korrigieren ist zwar sehr engagiert, aber spricht nicht für robusten code. Wir haben auf -eine Validierung bzw eine Fehlerbehandlung abgezielt- das fehlt leider komplett.
-        -Header / data count comparison, dateTime creation, employeeId conflicts
-    -Bulk processing
-        -Ein flush von allen Entities auf einmal auch gewagt, eine BATCH_SIZE wäre schön gewesen
-    -Ausgabe
-        -Alle Employees bruteforce zu dehydrieren und auszugeben führt früher oder später zu out of memory exceptions
-        -Eine Pagination wäre hier schön gewesen
-        -Ein Serializer statt ein statisches Mapping wäre schön gewesen
-    -Return types / typehinting / strict types waren unvollständig
-        -Best practice bei größeren php projekten
-    -Re-import und update von employees
-        -Deine Umsetzung ist nur auf einen Einmal-Import ausgelegt
-    -Performance
-        -Bei der Dateigröße und gegebenfalls re-import funktionalität wäre ein async handling sinnvoll. Z.b. Als message
+## Verbesserungs:
+    - Validierung & Robustheit
+        - Dein Ansatz die Datei händisch zu korrigieren ist zwar sehr engagiert, aber spricht nicht für robusten code. Wir haben auf - - eine Validierung bzw eine Fehlerbehandlung abgezielt- das fehlt leider komplett.
+        - Header / data count comparison, dateTime creation, employeeId conflicts
+    - Bulk processing
+        - Ein flush von allen Entities auf einmal auch gewagt, eine BATCH_SIZE wäre schön gewesen
+    - Ausgabe
+        - Alle Employees bruteforce zu dehydrieren und auszugeben führt früher oder später zu out of memory exceptions
+        - Eine Pagination wäre hier schön gewesen
+        - Ein Serializer statt ein statisches Mapping wäre schön gewesen
+    - Return types / typehinting / strict types waren unvollständig
+        - Best practice bei größeren php projekten
+    - Re-import und update von employees
+        - Deine Umsetzung ist nur auf einen Einmal-Import ausgelegt
+    - Performance
+        - Bei der Dateigröße und gegebenfalls re-import funktionalität wäre ein async handling sinnvoll. Z.b. Als message
